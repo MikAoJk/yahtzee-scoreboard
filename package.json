@@ -1,5 +1,6 @@
 {
   "name": "yahtzee-scoreboard",
+  "homepage": "https://mikaojk.github.io/yahtzee-scoreboard",
   "version": "0.1.0",
   "private": true,
   "scripts": {

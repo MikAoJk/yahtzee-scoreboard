@@ -22,7 +22,7 @@ const initialCategories: ScoreCategory[] = [
     {name: 'Chance', score: 0},
 ];
 
-const Scoreboard: React.FC = () => {
+const Scoreboard = () => {
     const [categories, setCategories] = useState<ScoreCategory[]>(initialCategories);
 
     const handleScoreChange = (index: number, score: number) => {
@@ -33,7 +33,7 @@ const Scoreboard: React.FC = () => {
 
     return (
         <div className="flex min-h-screen flex-col p-16 md:items-center md:p-24">
-            <h1 className="mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-w">Yahtzee
+            <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-w">Yahtzee
                 Scoreboard</h1>
             <table>
                 <thead>
@@ -46,7 +46,7 @@ const Scoreboard: React.FC = () => {
                 {categories.map((category, index) => (
                     <tr key={index}>
                         <td>{category.name}</td>
-                        <td className="m-auto pb-5 mt-20">
+                        <td className="pb-5 mt-20">
                                 <input
                                     type="number"
                                     className="w-24 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

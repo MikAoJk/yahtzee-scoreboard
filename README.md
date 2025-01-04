@@ -42,3 +42,14 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 ## Deployed to GitHub pages
 
 The application is live at: https://mikaojk.github.io/yahtzee-scoreboard
+
+## Contact
+
+This project is maintained by [CODEOWNERS](CODEOWNERS)
+
+Questions and/or feature requests?
+Please create an [issue](https://github.com/MikAoJk/yahtzee-scoreboard/issues)
+
+## ✏️ Contributing
+
+To get started, please fork the repo and checkout a new branch and create a pull request

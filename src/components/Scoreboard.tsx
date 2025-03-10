@@ -1,4 +1,5 @@
 'use client';
+
 import React, {useState} from 'react';
 
 type ScoreCategory = {
@@ -22,6 +23,9 @@ const initialCategories: ScoreCategory[] = [
     {name: 'Chance', score: 0},
 ];
 
+const bonusLimit = 84;
+const bonusPoints = 100;
+
 const Scoreboard = () => {
     const [categories, setCategories] = useState<ScoreCategory[]>(initialCategories);
 
@@ -30,6 +34,34 @@ const Scoreboard = () => {
         updatedCategories[index].score = score;
         setCategories(updatedCategories);
     };
+
+    function isBonus(): boolean {
+        let tmpScore: number = 0
+
+        categories.forEach(
+            category => {
+                if (category.name === 'Ones' || category.name === 'Twos' || category.name === 'Threes' || category.name === 'Fours' || category.name === 'Fives' || category.name === 'Sixes') {
+                    tmpScore += category.score;
+                }
+            }
+        )
+
+        return tmpScore >= bonusLimit;
+
+    }
+
+    function calculateTotalscore() {
+        if(isBonus()) {
+            return  categories.map(category=>category.score).reduce((a,b)=>a+b) + bonusPoints;
+        }
+        else {
+            return  categories.map(category=>category.score).reduce((a,b)=>a+b);
+
+        }
+    }
+
+    const totalScore: number = calculateTotalscore();
+
 
     return (
         <div className="flex min-h-screen flex-col p-16 md:items-center md:p-24">
@@ -57,6 +89,7 @@ const Scoreboard = () => {
                 ))}
                 </tbody>
             </table>
+            <p>Total score: {totalScore}</p>
         </div>
     );
 };

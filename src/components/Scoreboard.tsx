@@ -28,14 +28,14 @@ const bonusPoints = 100;
 
 const Scoreboard = () => {
     const [categories, setCategories] = useState<ScoreCategory[]>(initialCategories);
-    const [totalscore, setTotalscore] = useState<number>(0);
+    const [totalScore, setTotalscore] = useState<number>(0);
 
     const handleScoreChange = (index: number, score: number) => {
         const updatedCategories = [...categories];
         updatedCategories[index].score = score;
         setCategories(updatedCategories);
-        const updatedTotalscore = calculateTotalscore()
-        setTotalscore(updatedTotalscore)
+        const updatedTotalscore = calculateTotalscore();
+        setTotalscore(updatedTotalscore);
     };
 
     function isBonus(): boolean {

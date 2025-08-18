@@ -29,14 +29,16 @@ const bonusPoints = 100;
 const Scoreboard = () => {
     const [categories, setCategories] = useState<ScoreCategory[]>(initialCategories);
     const [totalScore, setTotalscore] = useState<number>(0);
-
-    const handleScoreChange = (index: number, score: number) => {
-        const updatedCategories = [...categories];
-        updatedCategories[index].score = score;
-        setCategories(updatedCategories);
-        const updatedTotalscore = calculateTotalscore();
-        setTotalscore(updatedTotalscore);
+    
+    const handleScoreChange = (index: number, scoreInput: string) => {
+    const score = isNaN(Number(scoreInput)) ? 0 : Number(scoreInput);
+    const updatedCategories = [...categories];
+    updatedCategories[index].score = score;
+    setCategories(updatedCategories);
+    const updatedTotalscore = calculateTotalscore(updatedCategories);
+    setTotalscore(updatedTotalscore);
     };
+    
 
     function isBonus(): boolean {
         let tmpScore: number = 0
@@ -84,7 +86,7 @@ const Scoreboard = () => {
                                     type="number"
                                     className="w-16 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                     value={category.score ?? 0}
-                                    onChange={(e) => handleScoreChange(index, parseInt(e.target.value))}/>
+                                    onChange={(e) => handleScoreChange(index, e.target.value)}/>
                         </td>
                     </tr>
                 ))}

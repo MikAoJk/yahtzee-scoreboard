@@ -35,7 +35,7 @@ const Scoreboard = () => {
     const updatedCategories = [...categories];
     updatedCategories[index].score = score;
     setCategories(updatedCategories);
-    const updatedTotalscore = calculateTotalscore(updatedCategories);
+    const updatedTotalscore = calculateTotalscore();
     setTotalscore(updatedTotalscore);
     };
     

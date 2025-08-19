@@ -36,7 +36,7 @@ const Scoreboard = () => {
         setCategories(updatedCategories);
         const updatedTotalscore = calculateTotalscore();
         setTotalscore(updatedTotalscore);
-        }:
+        };
     
     
 

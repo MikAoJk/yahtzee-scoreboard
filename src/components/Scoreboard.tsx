@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 type Player = {
     id: string;
@@ -31,6 +31,37 @@ const createInitialCategories = (players: Player[]): ScoreCategory[] => {
 const bonusLimit = 84;
 const bonusPoints = 100;
 
+// localStorage keys
+const STORAGE_KEYS = {
+    PLAYERS: 'yahtzee-scoreboard-players',
+    CATEGORIES: 'yahtzee-scoreboard-categories'
+};
+
+// localStorage utility functions
+const saveToLocalStorage = (key: string, data: Player[] | ScoreCategory[]): void => {
+    try {
+        if (typeof window !== 'undefined' && window.localStorage) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+    } catch (error) {
+        console.warn('Failed to save to localStorage:', error);
+    }
+};
+
+const loadFromLocalStorage = <T,>(key: string, defaultValue: T): T => {
+    try {
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const stored = localStorage.getItem(key);
+            if (stored) {
+                return JSON.parse(stored);
+            }
+        }
+    } catch (error) {
+        console.warn('Failed to load from localStorage:', error);
+    }
+    return defaultValue;
+};
+
 const Scoreboard = () => {
     const [players, setPlayers] = useState<Player[]>([
         { id: '1', name: 'Player 1' }
@@ -38,6 +69,25 @@ const Scoreboard = () => {
     const [categories, setCategories] = useState<ScoreCategory[]>(() => 
         createInitialCategories([{ id: '1', name: 'Player 1' }])
     );
+
+    // Load data from localStorage on component mount
+    useEffect(() => {
+        const storedPlayers = loadFromLocalStorage(STORAGE_KEYS.PLAYERS, [{ id: '1', name: 'Player 1' }]);
+        const storedCategories = loadFromLocalStorage(STORAGE_KEYS.CATEGORIES, createInitialCategories([{ id: '1', name: 'Player 1' }]));
+        
+        setPlayers(storedPlayers);
+        setCategories(storedCategories);
+    }, []);
+
+    // Save players to localStorage when players change
+    useEffect(() => {
+        saveToLocalStorage(STORAGE_KEYS.PLAYERS, players);
+    }, [players]);
+
+    // Save categories to localStorage when categories change
+    useEffect(() => {
+        saveToLocalStorage(STORAGE_KEYS.CATEGORIES, categories);
+    }, [categories]);
 
     const handleScoreChange = (categoryIndex: number, playerId: string, score: number) => {
         const updatedCategories = [...categories];

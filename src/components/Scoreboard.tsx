@@ -89,9 +89,19 @@ const Scoreboard = () => {
         saveToLocalStorage(STORAGE_KEYS.CATEGORIES, categories);
     }, [categories]);
 
-    const handleScoreChange = (categoryIndex: number, playerId: string, score: number) => {
+    const handleScoreChange = (categoryIndex: number, playerId: string, inputValue: string) => {
         const updatedCategories = [...categories];
-        updatedCategories[categoryIndex].scores[playerId] = isNaN(score) ? 0 : score;
+        
+        // Handle empty input as 0
+        if (inputValue === '') {
+            updatedCategories[categoryIndex].scores[playerId] = 0;
+        } else {
+            // Remove leading zeros and convert to number
+            const cleanedValue = inputValue.replace(/^0+/, '') || '0';
+            const score = parseInt(cleanedValue, 10);
+            updatedCategories[categoryIndex].scores[playerId] = isNaN(score) ? 0 : score;
+        }
+        
         setCategories(updatedCategories);
     };
 
@@ -210,8 +220,8 @@ const Scoreboard = () => {
                                     <input
                                         type="number"
                                         className="w-16 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block mx-auto p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        value={category.scores[player.id] ?? 0}
-                                        onChange={(e) => handleScoreChange(categoryIndex, player.id, parseInt(e.target.value))}
+                                        value={category.scores[player.id] === 0 ? '' : category.scores[player.id] ?? ''}
+                                        onChange={(e) => handleScoreChange(categoryIndex, player.id, e.target.value)}
                                     />
                                 </td>
                             ))}

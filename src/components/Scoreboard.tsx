@@ -28,8 +28,8 @@ const createInitialCategories = (players: Player[]): ScoreCategory[] => {
     }));
 };
 
-const bonusLimit = 84;
-const bonusPoints = 100;
+const bonusLimit = 63;
+const bonusPoints = 50;
 
 // localStorage keys
 const STORAGE_KEYS = {

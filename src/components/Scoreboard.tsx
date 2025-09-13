@@ -45,7 +45,7 @@ const createInitialCategories = (players: Player[], mode: GameMode): ScoreCatego
 const getGameModeConfig = (mode: GameMode) => {
     return {
         bonusLimit: mode === 'classic' ? 63 : 84,
-        bonusPoints: 50,
+        bonusPoints: mode === 'classic' ? 50 : 100,
         title: mode === 'classic' ? 'Yahtzee Scoreboard' : 'Maxi Yatzy Scoreboard'
     };
 };

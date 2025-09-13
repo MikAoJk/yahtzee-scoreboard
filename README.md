@@ -2,24 +2,6 @@
 
 A digital scoreboard for both Classic Yahtzee and Maxi Yatzy games, built with modern web technologies.
 
-## Features
-
-* **Dual Game Mode Support**: Switch between Classic Yahtzee and Maxi Yatzy
-* **Multiple Players**: Add and manage multiple players with editable names
-* **Automatic Scoring**: Calculates bonuses and totals automatically
-* **Session Persistence**: Game mode, players, and scores are saved in browser localStorage
-* **Responsive Design**: Works on desktop and mobile devices
-
-### Game Modes
-
-**Classic Yahtzee (5 dice)**
-- Standard 13 categories: Ones through Sixes, Three of a Kind, Four of a Kind, Full House, Small Straight, Large Straight, Yahtzee, Chance
-- Bonus: 50 points if upper section ≥ 63 points
-
-**Maxi Yatzy (6 dice)**
-- 16 categories: Ones through Sixes, One Pair, Two Pairs, Three Pairs, Small Straight (1-5), Large Straight (2-6), Full Straight (1-6), House (Full House), Tower (4 of a kind), Maxi Yatzy (5 of a kind), Chance
-- Bonus: 50 points if upper section ≥ 84 points
-
 ## Technologies used
 
 * NPM

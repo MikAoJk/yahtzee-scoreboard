@@ -58,7 +58,7 @@ const STORAGE_KEYS = {
 };
 
 // localStorage utility functions
-const saveToLocalStorage = (key: string, data: Player[] | ScoreCategory[]): void => {
+const saveToLocalStorage = <T,>(key: string, data: T): void => {
     try {
         if (typeof window !== 'undefined' && window.localStorage) {
             localStorage.setItem(key, JSON.stringify(data));

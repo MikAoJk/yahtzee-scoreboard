@@ -58,7 +58,7 @@ const STORAGE_KEYS = {
 };
 
 // localStorage utility functions
-const saveToLocalStorage = (key: string, data: Player[] | ScoreCategory[]): void => {
+const saveToLocalStorage = <T,>(key: string, data: T): void => {
     try {
         if (typeof window !== 'undefined' && window.localStorage) {
             localStorage.setItem(key, JSON.stringify(data));
@@ -205,7 +205,7 @@ const Scoreboard = () => {
 
     return (
         <div className="flex min-h-screen flex-col p-16 md:items-center md:p-24">
-            <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-w">
+            <h1 className="mb-8 text-4xl font-extrabold leading-none tracking-tight md:text-5xl lg:text-6xl dark:text-white">
                 {gameConfig.title}
             </h1>
             
